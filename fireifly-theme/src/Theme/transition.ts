@@ -1,26 +1,48 @@
-const transition = {
-    property: {
-        common:
-            'background-color, border-color, color, fill, stroke, opacity, box-shadow, transform',
-        colors: 'background-color, border-color, color, fill, stroke',
-        dimensions: 'width, height',
-        position: 'left, right, top, bottom',
-        background: 'background-color, background-image, background-position',
-    },
-    timingFunction: {
-        'ease-in': 'cubic-bezier(0.4, 0, 1, 1)',
-        'ease-out': 'cubic-bezier(0, 0, 0.2, 1)',
-        'ease-in-out': 'cubic-bezier(0.4, 0, 0.2, 1)',
-    },
-    duration: {
-        'ultra-fast': '50ms',
-        faster: '100ms',
-        fast: '150ms',
-        normal: '200ms',
-        slow: '300ms',
-        slower: '400ms',
-        'ultra-slow': '500ms',
-    },
+export interface Transition {
+  property: {
+    common: string;
+    colors: string;
+    dimensions: string;
+    position: string;
+    background: string;
+  };
+  timingFunction: {
+    'ease-in': string;
+    'ease-out': string;
+    'ease-in-out': string;
+  };
+  duration: {
+    'ultra-fast': string;
+    faster: string;
+    fast: string;
+    normal: string;
+    slow: string;
+    slower: string;
+    'ultra-slow': string;
+  };
+}
+const transition: Transition = {
+  property: {
+    common: 'background-color, border-color, color, fill, stroke, opacity, box-shadow, transform',
+    colors: 'background-color, border-color, color, fill, stroke',
+    dimensions: 'width, height',
+    position: 'left, right, top, bottom',
+    background: 'background-color, background-image, background-position'
+  },
+  timingFunction: {
+    'ease-in': 'cubic-bezier(0.4, 0, 1, 1)',
+    'ease-out': 'cubic-bezier(0, 0, 0.2, 1)',
+    'ease-in-out': 'cubic-bezier(0.4, 0, 0.2, 1)'
+  },
+  duration: {
+    'ultra-fast': '50ms',
+    faster: '100ms',
+    fast: '150ms',
+    normal: '200ms',
+    slow: '300ms',
+    slower: '400ms',
+    'ultra-slow': '500ms'
+  }
 };
 
 export default transition;

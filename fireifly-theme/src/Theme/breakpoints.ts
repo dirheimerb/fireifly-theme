@@ -1,8 +1,14 @@
-const breakpoints: any = ['30em', '48em', '62em', '80em'];
+export interface BreakPoints {
+  sm?: string;
+  md: string;
+  lg?: string;
+  xl?: string;
+}
 
-breakpoints.sm = breakpoints[0];
-breakpoints.md = breakpoints[1];
-breakpoints.lg = breakpoints[2];
-breakpoints.xl = breakpoints[3];
-
+const breakpoints: BreakPoints = {
+  sm: '30em',
+  md: '48em',
+  lg: '62em',
+  xl: '80em'
+};
 export default breakpoints;
