@@ -1,0 +1,19 @@
+{
+  "name": "fireifly-keycodes",
+  "version": "1.0.0",
+  "description": "Generate a JSON file with keyboard codes",
+  "main": "index.js",
+  "scripts": {
+    "keycodes": "node ./src/scripts/keyCodes.js",
+    "pretty": "prettier --write ."
+  },
+  "keywords": ["keycodes"],
+  "author": "FireiFly",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "prettier": "^2.7.1",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.4"
+  }
+}
