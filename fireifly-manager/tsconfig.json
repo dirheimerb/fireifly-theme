@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "paths": {
+            "api/*":["./src/api.*"],
+            "client/*":["./src/client/*"]
+        },
+        "declaration": true,
+        "declarationMap": true,
+        "outDir": "dist/",
+        "declarationDir": "types/"
+    }
+}

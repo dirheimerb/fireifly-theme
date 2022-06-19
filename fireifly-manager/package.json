@@ -1,0 +1,25 @@
+{
+    "name": "fireifly-manager",
+    "version": "1.0.0",
+    "main": "index.js",
+    "author": {
+        "name": "Bradley Dirheimer",
+        "email": "dirheimerb@gmail.com"
+    },
+    "scripts": {
+        "watch": "tsc -w",
+        "start": "tsc && node src/index.js",
+        "typeorm": "./node_modules/.bin/typeorm"
+    },
+    "dependencies": {
+        "pg": "^8.7.3",
+        "typeorm": "^0.3.6"
+    },
+    "devDependencies": {
+        "@types/node": "^18.0.0",
+        "prettier": "^2.7.1",
+        "reflect-metadata": "^0.1.13",
+        "ts-node": "^10.8.1",
+        "typescript": "^4.7.4"
+    }
+}
