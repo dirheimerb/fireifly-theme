@@ -1,0 +1,1 @@
+{"version":3,"file":"story.d.ts","sourceRoot":"","sources":["../../src/api/entity/story.ts"],"names":[],"mappings":"AAEA,qBACa,KAAK;IAEd,EAAE,EAAE,MAAM,CAAA;IAIV,IAAI,EAAC,MAAM,CAAC;IAEZ,WAAW,EAAE,MAAM,CAAA;IAEnB,QAAQ,EAAE,MAAM,CAAC;IAEjB,MAAM,EAAE,MAAM,CAAC;IAEf,UAAU,EAAE,MAAM,CAAC;CACtB"}

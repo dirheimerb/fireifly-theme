@@ -1,14 +1,16 @@
 {
-    "compilerOptions": {
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "paths": {
-            "api/*":["./src/api.*"],
-            "client/*":["./src/client/*"]
-        },
-        "declaration": true,
-        "declarationMap": true,
-        "outDir": "dist/",
-        "declarationDir": "types/"
-    }
+   "compilerOptions": {
+      "lib": [
+         "es5",
+         "es6"
+      ],
+      "target": "es5",
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "outDir": "./build",
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "sourceMap": true,
+      "esModuleInterop": true
+   }
 }

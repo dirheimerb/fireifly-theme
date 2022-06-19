@@ -6,20 +6,22 @@ import {
     CreateDateColumn,
     UpdateDateColumn,
     OneToMany,
+    ManyToMany,
+    ManyToOne,
+    RelationId,
   } from 'typeorm';
   
   import is from '../utils/validation';
-  import { ProjectCategory } from '../api/repo/projects';
+  import Comment from './Comment';
 import Issue from './Issue';
-import User from './User';
+import Project from './Project';
 
   
   @Entity()
-  class Project extends BaseEntity {
+  class User extends BaseEntity {
     static validations = {
       name: [is.required(), is.maxLength(100)],
-      url: is.url(),
-      category: [is.required(), is.oneOf(Object.values(ProjectCategory))],
+      email: [is.required(), is.email(), is.maxLength(200)],
     };
   
     @PrimaryGeneratedColumn()
@@ -28,14 +30,11 @@ import User from './User';
     @Column('varchar')
     name: string;
   
-    @Column('varchar', { nullable: true })
-    url: string | null;
-  
-    @Column('text', { nullable: true })
-    description: string | null;
-  
     @Column('varchar')
-    category: ProjectCategory;
+    email: string;
+  
+    @Column('varchar', { length: 2000 })
+    avatarUrl: string;
   
     @CreateDateColumn({ type: 'timestamp' })
     createdAt: Date;
@@ -44,16 +43,26 @@ import User from './User';
     updatedAt: Date;
   
     @OneToMany(
+      () => Comment,
+      comment => comment.user,
+    )
+    comments: Comment[];
+  
+    @ManyToMany(
       () => Issue,
-      issue => issue.project,
+      issue => issue.users,
     )
     issues: Issue[];
   
-    @OneToMany(
-      () => User,
-      user => user.project,
+    @ManyToOne(
+      () => Project,
+      project => project.users,
     )
-    users: User[];
+    project: Project;
+  
+    @RelationId((user: User) => user.project)
+    projectId: number;
   }
   
-  export default Project;
+  export default User;
+  

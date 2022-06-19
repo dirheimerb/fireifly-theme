@@ -1,0 +1,1 @@
+{"version":3,"file":"Post.d.ts","sourceRoot":"","sources":["../../src/api/entity/Post.ts"],"names":[],"mappings":"AAOE,OAAO,EAAE,QAAQ,EAAE,MAAM,YAAY,CAAA;AAErC,qBACa,IAAI;IAEf,EAAE,EAAE,MAAM,CAAA;IAGV,KAAK,EAAE,MAAM,CAAA;IAGb,IAAI,EAAE,MAAM,CAAA;IAIZ,UAAU,EAAE,QAAQ,EAAE,CAAA;CACvB"}
