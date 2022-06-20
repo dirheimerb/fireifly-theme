@@ -1,4 +1,4 @@
-import striptags from 'striptags';
+import striptags from "striptags";
 import {
   BaseEntity,
   Entity,
@@ -13,13 +13,13 @@ import {
   RelationId,
   BeforeUpdate,
   BeforeInsert,
-} from 'typeorm';
+} from "typeorm";
 
-import is from '../utils/validation';
-import { IssueType, IssueStatus, IssuePriority } from '../api/repo/issues';
-import Comment from './Comment';
-import Project from './Project';
-import User from './User';
+import is from "../utils/validation";
+import { IssueType, IssueStatus, IssuePriority } from "../api/repo/issues";
+import Comment from "./Comment";
+import Project from "./Project";
+import User from "./User";
 
 @Entity()
 class Issue extends BaseEntity {
@@ -35,64 +35,55 @@ class Issue extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column('varchar')
+  @Column("varchar")
   title: string;
 
-  @Column('varchar')
+  @Column("varchar")
   type: IssueType;
 
-  @Column('varchar')
+  @Column("varchar")
   status: IssueStatus;
 
-  @Column('varchar')
+  @Column("varchar")
   priority: IssuePriority;
 
-  @Column('double precision')
+  @Column("double precision")
   listPosition: number;
 
-  @Column('text', { nullable: true })
+  @Column("text", { nullable: true })
   description: string | null;
 
-  @Column('text', { nullable: true })
+  @Column("text", { nullable: true })
   descriptionText: string | null;
 
-  @Column('integer', { nullable: true })
+  @Column("integer", { nullable: true })
   estimate: number | null;
 
-  @Column('integer', { nullable: true })
+  @Column("integer", { nullable: true })
   timeSpent: number | null;
 
-  @Column('integer', { nullable: true })
+  @Column("integer", { nullable: true })
   timeRemaining: number | null;
 
-  @CreateDateColumn({ type: 'timestamp' })
+  @CreateDateColumn({ type: "timestamp" })
   createdAt: Date;
 
-  @UpdateDateColumn({ type: 'timestamp' })
+  @UpdateDateColumn({ type: "timestamp" })
   updatedAt: Date;
 
-  @Column('integer')
+  @Column("integer")
   reporterId: number;
 
-  @ManyToOne(
-    () => Project,
-    project => project.issues,
-  )
+  @ManyToOne(() => Project, (project) => project.issues)
   project: Project;
 
-  @Column('integer')
+  @Column("integer")
   projectId: number;
 
-  @OneToMany(
-    () => Comment,
-    comment => comment.issue,
-  )
+  @OneToMany(() => Comment, (comment) => comment.issue)
   comments: Comment[];
 
-  @ManyToMany(
-    () => User,
-    user => user.issues,
-  )
+  @ManyToMany(() => User, (user) => user.issues)
   @JoinTable()
   users: User[];
 

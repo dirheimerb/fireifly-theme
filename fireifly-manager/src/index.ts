@@ -1,20 +1,30 @@
-import { AppDataSource } from "./data-source"
-import { User } from "./entity/User"
+import 'module-alias/register';
+import 'dotenv/config';
+import 'reflect-metadata';
+import express from 'express';
+import cors from 'cors';
 
-AppDataSource.initialize().then(async () => {
 
-    console.log("Inserting a new user into the database...")
-    const user = new User()
-    user.firstName = "admin"
-    user.lastName = "account"
-    user.age = 40
-    await AppDataSource.manager.save(user)
-    console.log("Saved a new user with id: " + user.id)
+import { addRespondToResponse } from './middleware/response';
+import { authenticateUser } from './middleware/authentication';
 
-    console.log("Loading users from the database...")
-    const users = await AppDataSource.manager.find(User)
-    console.log("Loaded users: ", users)
+import { RouteNotFoundError } from './errors';
 
-    console.log("Here you can setup and run express / fastify / any other framework.")
+const initializeExpress = (): void => {
+  const app = express();
 
-}).catch(error => console.log(error))
+  app.use(cors());
+  app.use(express.json());
+  app.use(express.urlencoded());
+
+  app.use(addRespondToResponse);
+
+
+  app.use('/', authenticateUser);
+
+
+  app.use((req, _res, next) => next(new RouteNotFoundError(req.originalUrl)));
+
+  app.listen(process.env.PORT || 3000);
+};
+

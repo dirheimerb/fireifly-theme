@@ -1,18 +1,24 @@
-import { Issue } from 'entities';
-import { catchErrors } from 'errors';
-import { updateEntity, deleteEntity, createEntity, findEntityOrThrow } from 'utils/typeorm';
+import Issue from "../entity/Issue";
+import { catchErrors } from "../errors";
+import {
+  updateEntity,
+  deleteEntity,
+  createEntity,
+  findEntityOrThrow,
+} from "../utils/typeorm";
 
 export const getProjectIssues = catchErrors(async (req, res) => {
   const { projectId } = req.currentUser;
   const { searchTerm } = req.query;
 
-  let whereSQL = 'issue.projectId = :projectId';
+  let whereSQL = "issue.projectId = :projectId";
 
   if (searchTerm) {
-    whereSQL += ' AND (issue.title ILIKE :searchTerm OR issue.descriptionText ILIKE :searchTerm)';
+    whereSQL +=
+      " AND (issue.title ILIKE :searchTerm OR issue.descriptionText ILIKE :searchTerm)";
   }
 
-  const issues = await Issue.createQueryBuilder('issue')
+  const issues = await Issue.createQueryBuilder("issue")
     .select()
     .where(whereSQL, { projectId, searchTerm: `%${searchTerm}%` })
     .getMany();
@@ -22,7 +28,7 @@ export const getProjectIssues = catchErrors(async (req, res) => {
 
 export const getIssueWithUsersAndComments = catchErrors(async (req, res) => {
   const issue = await findEntityOrThrow(Issue, req.params.issueId, {
-    relations: ['users', 'comments', 'comments.user'],
+    relations: ["users", "comments", "comments.user"],
   });
   res.respond({ issue });
 });
@@ -43,7 +49,10 @@ export const remove = catchErrors(async (req, res) => {
   res.respond({ issue });
 });
 
-const calculateListPosition = async ({ projectId, status }: Issue): Promise<number> => {
+const calculateListPosition = async ({
+  projectId,
+  status,
+}: Issue): Promise<number> => {
   const issues = await Issue.find({ projectId, status });
 
   const listPositions = issues.map(({ listPosition }) => listPosition);

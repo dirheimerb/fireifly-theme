@@ -1,2 +1,2 @@
-export * from './customErrors';
-export { catchErrors } from './asyncCatch';
+export * from "./customErrors";
+export { catchErrors } from "./asyncCatch";

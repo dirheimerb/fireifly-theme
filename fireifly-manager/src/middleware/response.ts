@@ -1,4 +1,4 @@
-import { RequestHandler } from 'express';
+import { RequestHandler } from "express";
 
 export const addRespondToResponse: RequestHandler = (_req, res, next) => {
   res.respond = (data): void => {
